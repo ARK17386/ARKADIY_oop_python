@@ -164,3 +164,4 @@ print('Задание № 6:')
 # print(u.get_password())
 print(u.__dict__)
 print(u._User__password)
+
