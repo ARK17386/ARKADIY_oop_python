@@ -8,7 +8,7 @@ print(Circle.is_valid_radius(500))   # True
 print(Circle.is_valid_radius(1500))  # False
 ======================================
 """
-import math
+
 
 print('Задание № 1:')
 
@@ -17,7 +17,8 @@ class Circle:
     MAX_RADIUS = 1000
 
     def __init__(self, radius):
-        assert self.is_valid_radius(radius), 'Радиус не входит в допустимый диапазон'
+        if not self.is_valid_radius(radius):
+            raise ValueError('Радиус не входит в допустимый диапазон')
         self.radius = radius
 
     @classmethod
@@ -85,10 +86,10 @@ print('Задание № 4:')
 
 class User:
 
-    def set_credentials(self, login, password):
-        if isinstance(login, str) and isinstance(password, str):
-            self.__login = login
-            self.__password = password
+    # def set_credentials(self, login, password):
+    #     if isinstance(login, str) and isinstance(password, str):
+    #         self.__login = login
+    #         self.__password = password
 
     def set_credentials_2(self, login, password):
         if isinstance(login, str) and isinstance(password, str):
@@ -98,17 +99,14 @@ class User:
     def get_credentials(self):
         return self.__login, self.__password
 
-    def check_password(self, password):
-        if self.__password == password:
-            return True
-        else:
-            return False
+    # def check_password(self, password):
+    #     if self.__password == password:
+    #         return True
+    #     else:
+    #         return False
 
     def check_password_2(self, password):
-        if self.__password == self.__encrypt_password(password):
-            return True
-        else:
-            return False
+            return self.__password == self.__encrypt_password(password)
 
     def __encrypt_password(self, password):
         return password.upper()
@@ -118,7 +116,7 @@ class User:
 
 
 user1 = User()
-user1.set_credentials("Petrov", "Ytrewq")
+user1.set_credentials_2("Petrov", "Ytrewq")
 print(user1.get_credentials())
 
 user1.__login = "Sidorov"
@@ -158,7 +156,7 @@ print('-' * 33)
 """
 print('Задание № 6:')
 
-# u.__encrypt_password('sdvgs') # Метод не вызывается так как он защищенный. Да и как его шифровать, другим паролем?
+# u.__encrypt_password('sdvgs') # Метод не вызывается так как он приватный. Да и как его шифровать, другим паролем?
 # print(u.__password) # Ошибка. Атрибут объекта класса защищенный.
 
 # print(u.get_password())
