@@ -75,8 +75,8 @@ class HasText:
         return self.text in value
 
 
-assert HasText("Success")("Test passed: Success")
-# assert HasText("Error")("All OK")
+assert HasText("Success")("Test passed: Success") is True
+assert HasText("Error")("All OK") is False
 
 print('-' * 33)
 """
@@ -126,7 +126,7 @@ class TestUser:
         self.email = email
 
     def __repr__(self):
-        return f"TestUser id={self.id} name='{self.name}' email='{self.email}'"
+        return f"<TestUser id={self.id} name='{self.name}' email='{self.email}'>"
 
 user = TestUser(12, "Daniil", "daniil@example.com")
 print(user)
