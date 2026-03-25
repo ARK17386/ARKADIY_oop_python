@@ -12,7 +12,7 @@ print(s.area())  # 16
 ======================================
 """
 import math
-import urllib
+
 
 print('Задание № 1:')
 
@@ -92,15 +92,18 @@ print(results.success_count())  # 2
 print('Задание № 3:')
 
 class ResultList(list):
-    def __init__(self, lst):
-        self.lst = lst
+    # def __init__(self, lst):
+    #     self.lst = lst
+    #
+    # def success_count(self):
+    #     count = 0
+    #     for item in self.lst:
+    #         if item["status"] == "passed":
+    #             count += 1
+    #     return count
 
     def success_count(self):
-        count = 0
-        for item in self.lst:
-            if item["status"] == "passed":
-                count += 1
-        return count
+        return sum(1 for item in self if item["status"] == "passed")
 
 results = ResultList([
     {"status": "passed"},
@@ -134,6 +137,7 @@ step = LoginStep()
 print(issubclass(LoginStep, BaseStep))  # True
 print(isinstance(step, BaseStep))       # True
 print(isinstance(step, object))         # True
+print(isinstance(step, LoginStep))
 
 print('-' * 33)
 """
