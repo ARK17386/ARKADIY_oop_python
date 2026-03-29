@@ -26,11 +26,10 @@ class SecureData:
             raise ValueError('Создание атрибута "token" запрещено')
         object.__setattr__(self, name, value)
 
-    # def __getattribute__(self, item):
-    #     if self.__secret:
-    #         raise ValueError('Доступ к __secret - запрещен')
-    #     return object.__getattribute__(self, item)
-    # !!! Тут я не понял как решать, нужна консультация. По вот этой задаче:
+    def __getattribute__(self, item):
+        if item == "__secret":
+            raise ValueError("Доступ к __secret запрещён")
+        return object.__getattribute__(self, item)
 
 data = SecureData("пароль123")
 # print(data.__secret)      # ошибка
@@ -116,7 +115,7 @@ class Employee:
 
     @salary.setter
     def salary(self, value):
-        if value < 0:
+        if value < 1:
             raise ValueError(f'Зарплата должна быть положительным числом')
         self.__salary = value
 
@@ -228,6 +227,7 @@ print(karta.number)
 del karta.number
 
 # !!! Как писать тесты не понял, требуется консультация
+# Не понимаю как писать тест с помощью asser, напиши, пожалуйста, один пример. Дальше сделаю по аналогии.
 print('-' * 33)
 """
 8. Создай класс UserData для API регистрации пользователя:
@@ -256,7 +256,7 @@ class UserData:
     @email.setter
     def email(self, value):
         if "@" not in value:
-            return
+            raise ValueError('Ошибка. В email должна быть "@"')
         self.__email = value
 
     @property
@@ -266,9 +266,9 @@ class UserData:
     @age.setter
     def age(self, value):
         if not isinstance(value, int):
-            return
+            raise ValueError('Ошибка. Возраст должен быть числом')
         if value < 18:
-            return
+            raise ValueError('Ошибка. Возраст должен быть от 18 лет')
         self.__age = value
 
     @property
@@ -289,13 +289,13 @@ class UserData:
 
 data1 = UserData()
 # Проверка того, что при age = 15 выбрасывается ValueError:
-data1.age = 15
-assert data1.age is None, 'Ошибочка, возраст должен быть от 18 лет'
+# Не понимаю как писать тест с помощью asser, напиши, пожалуйста, один пример. Дальше сделаю по аналогии.
 
 
 # Проверка того, что email без @ вызывает ошибку:
-data1.email = 'adew@uairu'
-assert data1.email != None, 'Ошибочка, email должен содержать "@"'
+# data1.email = 'adewuairu'
+# Не понимаю как писать тест с помощью asser, напиши, пожалуйста, один пример. Дальше сделаю по аналогии.
 
 # Проверка того, что json возвращает корректную структуру:
 # !!! Как писать данную проверку не понял, требуется консультация
+# Не понимаю как писать тест с помощью asser, напиши, пожалуйста, один пример. Дальше сделаю по аналогии.
